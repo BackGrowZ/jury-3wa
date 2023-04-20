@@ -45,7 +45,10 @@ function App() {
       </section>
 
       <section>
-        <h2>Bloc 3: Accessibilité & Référencement</h2>
+        <h2>
+          Bloc 3: Accessibilité & <br />
+          Référencement
+        </h2>
         <article>
           <Checkbox label="W3C Validator" />
           <Rate />
