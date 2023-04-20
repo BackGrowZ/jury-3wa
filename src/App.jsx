@@ -4,7 +4,7 @@ import Rate from "./components/Rate";
 
 function App() {
   return (
-    <div style={{ display: "flex" }}>
+    <div className="main">
       {/* <Rate /> */}
 
       <section>
