@@ -73,8 +73,8 @@ const initialState = {
                     max: 5,
                     checkboxes: [
                         {id: 1, name: "Qualité de la mise en page", checked: false},
-                        {id: 2, name: "Les polices de caractère correspondent aux maquettes graphiques", checked: false},
-                        {id: 3, name: "La mise en valeur du texte est adaptée aux besoins des utilisateurs", checked: false}
+                        {id: 2, name: "Les fonts correspondent aux maquettes graphiques", checked: false},
+                        {id: 3, name: "La mise en valeur du texte est adaptée ", checked: false}
                     ],
                     comment: ""
                 },
@@ -98,7 +98,7 @@ const initialState = {
                     max: 5,
                     checkboxes: [
                         {id: 1, name: "Agilité de la programmation", checked: false},
-                        {id: 2, name: "Les fonctions avancées des langages d'intégration sont connues et bien utilisées", checked: false}
+                        {id: 2, name: "Les fonctions avancées sont connues et bien utilisées", checked: false}
                     ],
                     comment: ""
                 }

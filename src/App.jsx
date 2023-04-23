@@ -14,12 +14,12 @@ function App() {
           <h2>Bloc {blocId+1} - {item.name}</h2>
           <article>
             {item.evaluations.map((evaluation, evaluationId) => (
-              <div key={evaluationId} style={{border: "1px solid blue"}}>
-                <section style={{display:"grid", border:"none"}}>
+              <div key={evaluationId}>
+                <div style={{display:"grid", border:"none"}}>
                 {evaluation.checkboxes.map((checkbox, checkboxId) => (
                   <Checkbox key={checkboxId} label={checkbox.name} value={checkbox.checked} blocId={blocId} evaluationId={evaluationId} checkboxId={checkboxId} />
                 ))}
-                </section>
+                </div>
                 <Commentary value={evaluation.comment} blocId={blocId} evaluationId={evaluationId} />
                 <Rate value={evaluation.note} blocId={blocId} evaluationId={evaluationId} />
                 <hr />
