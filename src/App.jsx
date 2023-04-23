@@ -14,18 +14,16 @@ function App() {
           <h2>Bloc {blocId+1} - {item.name}</h2>
           <article>
             {item.evaluations.map((evaluation, evaluationId) => (
-              <>
-              <div key={evaluation.id} style={{border: "1px solid blue"}}>
+              <div key={evaluationId} style={{border: "1px solid blue"}}>
                 <section style={{display:"grid", border:"none"}}>
                 {evaluation.checkboxes.map((checkbox, checkboxId) => (
                   <Checkbox key={checkboxId} label={checkbox.name} value={checkbox.checked} blocId={blocId} evaluationId={evaluationId} checkboxId={checkboxId} />
                 ))}
                 </section>
-                <textarea value={evaluation.comment} rows={10} cols={50} onChange={(e) => dispatch({type:"commentary", blocs:blocId, evaluation:evaluationId, value:e.target.value})} />
+                <Commentary value={evaluation.comment} blocId={blocId} evaluationId={evaluationId} />
                 <Rate value={evaluation.note} blocId={blocId} evaluationId={evaluationId} />
+                <hr />
               </div>
-              <hr />
-              </>
             ))}
             <p>Total : {item.total}/20</p>
             <textarea value={item.comment} rows={10} cols={50} onChange={(e) => dispatch({type:"commentaryBloc", blocs:blocId, value:e.target.value})} />
