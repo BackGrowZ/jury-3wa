@@ -12,7 +12,6 @@ const Commentary = ({value, blocId, evaluationId}) => {
       type = "commentaryBloc";
     }
     const data = {type, blocs, evaluation, value:e.target.value}
-    console.log(data)
     dispatch(data);
   };
 
