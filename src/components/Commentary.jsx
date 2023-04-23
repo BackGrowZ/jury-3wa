@@ -1,11 +1,24 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { ReducerContext } from "../reducer/context";
 
-const Commentary = () => {
-  const [commentary, setCommentary] = useState("");
+const Commentary = ({value, blocId, evaluationId}) => {
+  const  [state, dispatch] = useContext(ReducerContext);
+
+  const handleChange = (e) => {
+    let type = "commentary";
+    let evaluation = evaluationId;
+    let blocs = blocId;
+    if (evaluation === undefined) {
+      type = "commentaryBloc";
+    }
+    const data = {type, blocs, evaluation, value:e.target.value}
+    console.log(data)
+    dispatch(data);
+  };
 
   return (
     <div>
-      <textarea value={commentary} rows={10} cols={50} onChange={(e) => setCommentary(e.target.value)} />
+      <textarea value={value} rows={10} cols={50} onChange={(e) => handleChange(e)} />
     </div>
   );
 };
