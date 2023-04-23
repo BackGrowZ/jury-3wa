@@ -1,110 +1,42 @@
-import Checkbox from "./components/Checkbox";
+import { useContext } from "react";
 import Commentary from "./components/Commentary";
 import Rate from "./components/Rate";
+import { ReducerContext } from "./reducer/context";
 
 function App() {
+  const  [state, dispatch] = useContext(ReducerContext);
+
   return (
-    <div className="main">
-      {/* <Rate /> */}
+    <main>
+      {state.blocs.map((item, blocId) => (
+        <section key={item.id}>
+          <h2>Bloc {blocId+1} - {item.name}</h2>
+          <article>
+            {item.evaluations.map((evaluation, evaluationId) => (
+              <div key={evaluation.id} style={{border: "1px solid blue"}}>
+                {evaluation.checkboxes.map((checkbox, checkboxId) => (
+                  <div key={checkboxId}>
+                    <input 
+                      type="checkbox" 
+                      key={checkbox.id} 
+                      checked={checkbox.checked} 
+                      onChange={(e) => dispatch({type:"checkbox", blocs:blocId, evaluation:evaluationId, checkbox:checkboxId, value:e.target.checked})} 
+                      />
+                      <label>{checkbox.name}</label>
+                      <br />
+                  </div>
+                ))}
+                <textarea value={evaluation.comment} rows={10} cols={50} onChange={(e) => dispatch({type:"commentary", blocs:blocId, evaluation:evaluationId, value:e.target.value})} />
+                <Rate value={evaluation.note} blocId={blocId} evaluationId={evaluationId} />
+              </div>
+            ))}
+            <p>Total : {item.total}/20</p>
+            <textarea value={item.comment} rows={10} cols={50} onChange={(e) => dispatch({type:"commentaryBloc", blocs:blocId, value:e.target.value})} />
+          </article>
+        </section>
 
-      <section>
-        <h2>Bloc 1: HTML</h2>
-        <article>
-          <div>
-            <Checkbox label="Maquette" />
-            <Rate />
-          </div>
-          <hr />
-          <div>
-            <Checkbox label="Navigation" />
-            <Rate />
-          </div>
-          <hr />
-          <div>
-            <Checkbox label="Structure HTML" />
-            <Rate />
-          </div>
-          <hr />
-          <Commentary />
-        </article>
-      </section>
-
-      <section>
-        <h2>Bloc 2: CSS</h2>
-        <article>
-          <Checkbox label="Font importer" />
-          <Rate />
-          <hr />
-          <Checkbox label="Texte aéré" />
-          <Rate />
-          <hr />
-          <Checkbox label="Animation" />
-          <Rate />
-          <Commentary />
-        </article>
-      </section>
-
-      <section>
-        <h2>
-          Bloc 3: Accessibilité & <br />
-          Référencement
-        </h2>
-        <article>
-          <Checkbox label="W3C Validator" />
-          <Rate />
-          <hr />
-          <Checkbox label="Balise sementique" />
-          <Checkbox label="Balise meta" />
-          <Rate />
-          <hr />
-          <h3>Compatibilité Navigateur</h3>
-          <Checkbox label="Chrome" />
-          <Checkbox label="Firefox" />
-          <Checkbox label="Safari" />
-          <Rate />
-          <hr />
-          <Checkbox label="Responsive" />
-          <Checkbox label="Media Query" />
-          <Rate />
-          <Commentary />
-        </article>
-      </section>
-
-      <section>
-        <h2>Bloc 4: JS Front</h2>
-        <article>
-          <Checkbox label="API" />
-          <Checkbox label="Sessions" />
-          <Rate />
-          <hr />
-          <Checkbox label="Class" />
-          <Checkbox label="Module" />
-          <Rate />
-          <hr />
-          <Checkbox label="DOM" />
-          <Rate />
-          <Commentary />
-        </article>
-      </section>
-
-      <section>
-        <h2>Bloc 5: Back BDD</h2>
-        <article>
-          <Checkbox label="UML" />
-          <Rate />
-          <hr />
-          <Checkbox label="Structure Coherrante" />
-          <Rate />
-          <hr />
-          <Checkbox label="exportation / importation" />
-          <Rate />
-          <hr />
-          <Checkbox label="filtre tri" />
-          <Rate />
-          <Commentary />
-        </article>
-      </section>
-    </div>
+      ))}
+    </main>
   );
 }
 
