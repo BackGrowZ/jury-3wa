@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { ReducerContext } from "../reducer/context";
 
-const Checkbox = ({ label }) => {
-  const [checked, setChecked] = useState(false);
-
+const Checkbox = ({ label, value, blocId, evaluationId, checkboxId}) => {
+  const  [state, dispatch] = useContext(ReducerContext);
   return (
-    <label className="checkbox">
-      <input type="checkbox" checked={checked} onChange={() => setChecked((value) => !value)} />
+    <label className="checkbox" >
+      <input type="checkbox" checked={value} onChange={(e) => dispatch({type:"checkbox", blocs:blocId, evaluation:evaluationId, checkbox:checkboxId, value:e.target.checked})} />
       {label && <span className="checkbox__label">{label}</span>}
     </label>
   );
