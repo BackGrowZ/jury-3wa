@@ -17,7 +17,7 @@ function App() {
           <article>
             {item.evaluations.map((evaluation, evaluationId) => (
               <div key={evaluationId}>
-                <div style={{ display: "grid", border: "none" }}>
+                <div style={{ display: "grid" }}>
                   {evaluation.checkboxes.map((checkbox, checkboxId) => (
                     <Checkbox
                       key={checkboxId}
@@ -29,13 +29,12 @@ function App() {
                     />
                   ))}
                 </div>
-                <Commentary value={evaluation.comment} blocId={blocId} evaluationId={evaluationId} />
+                {/* <Commentary value={evaluation.comment} blocId={blocId} evaluationId={evaluationId} /> */}
                 <Rate value={evaluation.note} blocId={blocId} evaluationId={evaluationId} />
-                <hr />
               </div>
             ))}
-            <p>Total : {item.total}/20</p>
             <Commentary value={item.comment} blocId={blocId} evaluationId={undefined} />
+            <p>Total : {item.total}/20</p>
           </article>
         </section>
       ))}
